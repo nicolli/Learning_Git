@@ -16,17 +16,14 @@ def print_lista_tipos():
     print("Os seguintes tipos de arquivos podem ser abertos:")
     print("txt zip csv json html xlsx hdf5 pkl sqlite")    
 
-#escolher pela lista de arquivos
+#Escolher pela lista de arquivos
 def nome_tipo():
     nome=input("Insira o nome do arquivo que deseja abrir:")
     tipo=input("Insira o seu tipo:")
-    #arquivo=int(input("Insira o número do arquivo" ))
     return nome,tipo
 
 def abrir_arquivo(nome,tipo):
     arquivo=nome+"."+tipo
-    l=True
-    #a="tipo"+"=="+tipo
     if tipo=="txt": #OK
         df=pd.read_csv(arquivo,sep="\t")
     if tipo=="zip": #OK
@@ -63,7 +60,7 @@ def abrir_arquivo(nome,tipo):
             df.columns = a.keys()
     return df
 #main
-#definir diretório
+  #definir diretório
 try:
     cwd=os.chdir("C:\\Users\\albuq\\OneDrive\\UFAL\\ENGENHARIA_AMBIENTAL_E_SANITÁRIA\\QUINTO_PERIODO\\INTRODUCAO_A_CIENCIA DE DADOS\\CODANDO\\DADOS")
 except:
