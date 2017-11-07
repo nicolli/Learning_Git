@@ -1,4 +1,9 @@
+#Leitura de dados (txt zip csv json html xlsx hdf5 pkl sqlite)
 
+""" Ferramentas usadas:
+  - Aquisição de dados abertos (teste de código)
+  - Leitura de dados
+"""
 import pandas as pd
 import os
 
@@ -30,16 +35,6 @@ def abrir_arquivo(nome,tipo):
         df=pd.read_csv(arquivo,sep=";")
     if tipo=="json": #+-
         df=pd.read_json(arquivo,lines=True)
-        #verificar o tipo de dado de cada coluna. Se for um dicionário,imprimir chaves #problema:lista de dicionarios 
-    if tipo=="html": #no
-        import lxml
-        choice=input("Digite 1 para abrir uma url e 2 para abrir um arquivo local:")
-        if choice==1:
-           url=input("Insira a url:")
-           df=pd.read_html(url)
-        else:
-            with open(arquivo, 'r') as f:
-                df = pd.read_html(f.read())
     if tipo=="xlsx": #ok
         df=pd.ExcelFile(arquivo)
         print(df.sheet_names)
@@ -63,7 +58,6 @@ def abrir_arquivo(nome,tipo):
         engine = create_engine('sqlite:///arquivo')
         query=input("Escreva a query:")
         with engine.connect() as con:
-            #a = con.execute("SELECT * FROM Employee")
             a = con.execute(query)
             df = pd.DataFrame(a.fetchall())
             df.columns = a.keys()
